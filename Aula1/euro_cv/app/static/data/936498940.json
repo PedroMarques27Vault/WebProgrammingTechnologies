@@ -1,0 +1,86 @@
+{
+  "eurocv": {
+    "foto":  "foto.jpg",
+    "desiredEmploy": "Systems Analyst",
+    "personalInfo": {
+      "name": {
+        "lastname": "Faria",
+        "firstname": "Fernanda"
+      },
+      "address": {
+        "street": "Vila Boa",
+        "cp": "4820-840",
+        "local": "Rego",
+        "country": "Portugal"
+      },
+      "contact": {
+        "phone": {
+          "countryprefix": "351",
+          "number": "936498940"
+        },
+        "fax": {
+          "countryprefix": "351",
+          "number": "253590552"
+        },
+        "email": [
+          {
+            "type": "Professional",
+            "value": "ffaria@neps.ics.uminho.pt"
+          },
+          {
+            "type": "Personal",
+            "value": "fernandafaria@portugalmail.pt"
+          }
+        ]
+      },
+      "nacionality": "Portuguese",
+      "birthdate": {
+        "day": "07",
+        "month": "March",
+        "year": "1974"
+      },
+      "gender": "Female"
+    },
+    "workexperience": {
+      "position": {
+        "dates": {
+          "start": {
+            "month": "Julho",
+            "year": "1999"
+          },
+          "end": {
+            "month": "Setembro",
+            "year": "2001"
+          }
+        },
+        "occupation": "Systems Analyst",
+        "activities": {
+          "activity": [
+            {
+              "designation": "SIG",
+              "time": "2 years"
+            },
+            {
+              "designation": "Web",
+              "time": "1 years"
+            }
+          ]
+        },
+        "employer": {
+          "name": "IDITE-Minho",
+          "address": {
+            "street": "Av. Francisco Gonçalves",
+            "cp": "4700",
+            "local": "Braga",
+            "country": "Portugal"
+          },
+          "contact": {
+            "www": "www.idite-minho.pt",
+            "email": "idite-minho@idite-minho.pt"
+          }
+        },
+        "businessSector": "Technology Inovation"
+      }
+    }
+  }
+}

@@ -1,0 +1,73 @@
+table{
+	border:none;
+	width: 100%;
+	border-collapse: collapse;
+}
+
+td{
+	height: 21px;
+}
+
+p{
+	text-align: right;
+}
+
+img{
+    max-width: 150px;
+    max-height: 150px;
+}
+
+.tableHeader{
+	vertical-align: top;
+	text-align: right;
+	width: 17%;
+	font-family: "Arial Narrow", Arial , sans-serif;
+	font-size: 15pt;
+	font-weight: 700;
+}
+
+.tableHeaderHeight{
+	height: 106px;
+}
+
+.fieldsHeader{
+	vertical-align: top;
+	text-align: right;
+	font-family: "Arial Narrow", Arial , sans-serif;
+	font-size: 13px;
+}
+
+.fieldsValue{
+	vertical-align: top;
+	text-align: left;
+	font-family: "Arial Narrow", Arial , sans-serif;
+	font-size: 14px;
+}
+
+
+.importantParagraph{
+	font-family: "Arial Narrow", Arial , sans-serif;
+	font-size: 13pt;
+	font-weight: 700;
+}
+
+.spacer1{
+	width: 12px;
+}
+
+.spacer2{
+	width: 16px;
+}
+
+.separator{
+	background-color: #666666;
+}
+
+.spacer3{
+	height: 42px;
+}
+
+
+#name{
+	font-weight: 700;
+}
