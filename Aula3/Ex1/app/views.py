@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.shortcuts import render
-
+from app.forms import  BookSearchForm
 # Create your views here.
 
 
@@ -24,9 +24,11 @@ def bookTitles(request):
 # c) uma página com a lista dos nomes de todos os autores;
 def authorNames(request):
     authors = Author.objects.all()
-    names = [c.name for c in authors]
+    assoc = {}
+    for c in authors:
+        assoc[c.name] = c.id
     tparams = {
-        'designation_list': names,
+        'designation_list': assoc,
         'category': 'author/'
     }
     return render(request, 'list.html', tparams)
@@ -34,10 +36,12 @@ def authorNames(request):
 # e) uma página com a lista dos nomes de todos as editoras;
 def publishersNames(request):
     pubs = Publisher.objects.all()
-    names = [c.name for c in pubs]
+    assoc = {}
+    for c in pubs:
+        assoc[c.name] = c.id
 
     tparams = {
-        'designation_list': names,
+        'designation_list': assoc,
         'category': 'publisher/'
     }
     return render(request, 'list.html', tparams)
@@ -79,3 +83,46 @@ def detailsPublisher(request, num):
 #h. na página com a lista de editoras, à frente do nome de cada editora, deve
 #encontrar-se um link “Autores” para uma página com a lista de autores dessa
 #editora.
+
+
+
+def booksearch(request):
+    #Types: 0=books, 1=authors, 2=pubs
+    if 'query' in request.POST:
+        query = request.POST['query']
+        if query:
+            books = Book.objects.filter(title__icontains=query)
+            assoc = {}
+            for c in books:
+                assoc[c.title] = c.id
+            tparams = {
+                'designation_list': assoc,
+                'category': 'book/'
+            }
+            return render(request, 'list.html', tparams)
+        else:
+            return render(request, 'search.html',{'error':True})
+    else:
+        return render(request, 'search.html',{'error':False})
+
+
+def bookquery(request):
+    if request.method == 'POST':
+        form = BookSearchForm(request.POST)
+        if form.is_valid():
+            query = form.cleaned_data['query']
+            books = Book.objects.filter(title__icontains=query)
+            assoc = {}
+            for c in books:
+                assoc[c.title] = c.id
+            tparams = {
+                'designation_list': assoc,
+                'category': 'book/'
+            }
+            return render(request, 'list.html', tparams)
+        else:
+            return render(request, 'search.html',{'error':True})
+    else:
+        form = BookSearchForm()
+
+    return render(request, 'search.html',{'error':False})
