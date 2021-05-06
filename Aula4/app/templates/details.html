@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Details</title>
+</head>
+<body>
+    <table>
+        {% if categ == 'author' %}
+            <tr>
+              <a class="fieldsValue" >{{ name }}</a>
+            </tr>
+            </br>
+            <tr>
+              <a class="fieldsValue" >{{ email }}</a>
+            </tr>
+        {% elif categ == 'book' %}
+            <tr>
+              <a class="fieldsValue">{{ title }}</a>
+            </tr>
+            </br>
+            <tr>
+              <a class="fieldsValue" >{{ date }}</a>
+            </tr>
+            </br>
+            <tr>
+              <a class="fieldsValue" >{{ pub }}</a>
+            </tr>
+            </br>
+            <tr>
+              <a class="fieldsValue" >{{ auth }}</a>
+            </tr>
+        {% elif categ == 'pub' %}
+            <tr>
+              <a class="fieldsValue">{{ name }}</a>
+            </tr>
+            </br>
+            <tr>
+              <a class="fieldsValue" >{{ city }}</a>
+            </tr>
+            </br>
+            <tr>
+              <a class="fieldsValue" >{{ country }}</a>
+            </tr>
+            </br>
+            <tr>
+              <a class="fieldsValue" >{{ web }}</a>
+            </tr>
+        {% endif %}
+    </table>
+</body>
+</html>
