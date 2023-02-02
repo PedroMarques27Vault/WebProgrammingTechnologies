@@ -1,0 +1,22 @@
+
+<div    style="  margin:auto;
+                      width:50%;
+                      padding:63px;
+                     ">
+  <div class="login-form"  ><!--login form-->
+    <h2>Login to your account</h2>
+    <form method="post" *ngIf="registerForm" [formGroup]="registerForm" (ngSubmit)="register()">
+      <input formControlName="username" type="text" placeholder="Username" />
+      <input formControlName="password" name="pass" type="password" placeholder="Password" />
+      <input formControlName="email" type="email" placeholder="Email" />
+      <a style="float:left;" routerLink="/login"> Already have an account? Login</a>
+
+
+      <button style="float:right;" type="submit" class="btn btn-default" value="SignUp">Signup</button>
+
+    </form>
+  </div><!--/login form-->
+</div>
+
+<router-outlet></router-outlet>
+

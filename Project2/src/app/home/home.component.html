@@ -1,0 +1,107 @@
+<style>
+
+
+</style>
+<div style="width:80%; margin-left:10%; margin-right:10%">
+  <img src="assets/images/drone.jpg" >
+
+</div>
+
+<div style="width:80%; margin-left:10%; margin-right:10%" class="features_items">
+  <br><br>
+  <h2 style="font-size: 20px;" class="title text-center">Popular products </h2>
+  <div  style="" class="container"  *ngFor="let product of allProducts" >
+    <div class="card" >
+      <a routerLink="/details/{{product.id}}">
+        <div class="imgBx">
+          <img src="{{ product.image }}">
+        </div>
+      </a>
+      <div class="contentBx">
+        <h3 style="color: black">{{product.name}}</h3>
+        <p>({{ product.condition }}) by {{ product.seller }}</p>
+        <p>
+          <a class="price" *ngIf="product.promotion" style="text-decoration: line-through">{{ product.price }} €</a>
+          <a class="price" *ngIf="product.promotion">{{ product.price- product.price*product.promotion.discount }} €</a>
+          <a class="price" *ngIf="product.promotion == null">{{ product.price }} €</a>
+          <a *ngIf="product.quantity!=0"  > <span class="not-in-stock">Stock</span></a>
+          <a *ngIf="product.quantity==0"  > <span class="not-in-stock">Not In Stock</span></a>
+        </p>
+
+
+      </div>
+    </div>
+
+  </div>
+
+
+  <div  style="margin-top: 450px" >
+    <br><br><br>
+    <h2 style="font-size: 20px;" class="title text-center">Comments </h2>
+
+    <div class="col-sm-12"   >
+
+      <div  *ngFor="let c of comments">
+        <div class=" ">
+          <div class="">
+            <div class="" style="border: #2a6496; border-style: solid; width:30%; margin:15px; float:left">
+              <h1 style="color:orange">{{ c.userName }} </h1>
+              <p>{{ c.commentDate }}</p>
+              <label><b>Description: </b></label>
+              <a>{{ c.description }}</a>
+
+
+
+              <h3 *ngFor="let a of c.stars" >
+                <i *ngIf="a==1" class = "fas fa-star"></i>
+                <i *ngIf="a==0" class = "fas fa-star-half-alt"></i>
+              </h3>
+
+
+              <h3>
+
+              </h3>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    <br>
+
+    </div>
+  </div>
+  <div style="clear:both;"></div>
+  <p></p>
+  <br><br><br>
+  <hr>
+  <h2 style="font-size: 20px;" class="title text-center">Add Comment </h2>
+
+  <div style="margin: 0 auto;width: 800px; height: 400px; margin-bottom: 500px ">
+
+    <div *ngIf="commentForm "  >
+      <form id="form-box"  method="post" (ngSubmit)="create()" [formGroup]="commentForm"  >
+
+
+        <h2 class="form-header" style="font-size: 20px">Create Comment</h2>
+        <div>
+
+          <br>
+          <p *ngIf="commentForm.controls['description'].invalid" style="color:red; font-size: 18px">Insert a Description</p>
+          <input formControlName="description" type="text" class="form-input"/>
+          <br>
+          <p *ngIf="commentForm.controls['rating'].invalid" style="color:red; font-size: 18px">Insert a product rating</p>
+          <input formControlName="rating" type="number" class="form-input"/>
+          <br>
+
+        </div>
+        <input style="float: right; font-size: 16px" type="submit"   class="btn btn-default check_out" value="Save"/>
+        <br><br>
+      </form>
+
+    </div>
+
+  </div>
+
+
+
+</div>

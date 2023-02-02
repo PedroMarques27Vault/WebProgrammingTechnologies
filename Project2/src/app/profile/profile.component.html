@@ -1,0 +1,123 @@
+<style>
+
+</style>
+
+<router-outlet></router-outlet>
+<br><br>
+
+  <div    style="  margin: 0 auto; width: 600px;
+
+                     " *ngIf="user!=null && profileForm" >
+
+    <form id="form-box"  [formGroup]="profileForm" method="post" (ngSubmit)="save()">
+      <h2 id="form-title">Profile</h2>
+
+
+      <div>
+        <div class="form-header">Username</div>
+        <p class="form-input" >{{user.username}}</p>
+
+        <div class="form-header">Email</div>
+        <input formControlName="email" type="text" class="form-input" [(ngModel)]="email" />
+
+        <div class="form-header">Password</div>
+        <input formControlName="password" type="text" class="form-input" placeholder="Insert Your New Or Old Password" />
+      </div>
+
+
+      <br>
+      <p formControlName="credits" type="number"  class="form-input" ><b>Your Credits:</b> {{credits}} €</p>
+      <p formControlName="credits" type="number"  class="form-input" >Date Joined: {{ user.date_joined }}</p>
+
+
+
+      <p>
+        <button style="font-size: 18px"  class="btn btn-sm btn-danger" (click)="delete()">Delete Account</button>
+      </p>
+      <p>
+        <input style="font-size: 18px" type="submit" class="btn btn-sm btn-info" value="Save"></p>
+    </form>
+
+
+
+
+  </div>
+
+<br><br>
+
+  <div class="container" style="  margin: 0 auto; width: 1100px;
+
+                     ">
+    <div class="table-responsive cart_info">
+      <a style="font-size: 18px" class="btn btn-fefault cart" routerLink="/products"><i class="fa fa-cog"></i>  My Products </a>
+      <a style="font-size: 18px" class="btn btn-fefault cart" routerLink="/sold"><i class="fa fa-cog"></i>  Products Sold </a>
+      <hr>
+      <h2>History</h2>
+
+    </div>
+  </div>
+  <section style="  margin: 0 auto; width: 1200px;" *ngFor="let scart of scarts | keyvalue" id="cart_items" >
+    <div class="table-responsive cart_info"   style="width:80%; margin-left: 10%; margin-right: 10%; background-color: lightgrey">
+      <table class="table table-condensed"  style="width:100%;">
+        <thead>
+
+        <tr class="cart_menu">
+          <td class="image">Item</td>
+          <td class="description">Description</td>
+          <td class="description">Description</td>
+          <td class="quantity">Quantity</td>
+          <td class="price">Price</td>
+
+        </tr>
+        </thead>
+        <tbody>
+
+
+        <tr *ngFor="let item of scart.value " >
+          <td class="col-sm-3 cart_product">
+            <a href=""><img style="width: 200px" src="{{ item.product.image }}" alt=""></a>
+          </td>
+          <td class="cart_description">
+            <h4><a href="">{{ item.product.name }}</a></h4>
+            <p>Web ID: {{ item.product.id }}</p>
+          </td>
+          <td class="cart_price" style="max-width:300px">
+            <p>{{ item.product.description }}</p>
+          </td>
+          <td class="cart_quantity">
+            <div class="cart_quantity_button">
+              <a class="cart_quantity_input" type="text" name="quantity"  autocomplete="off" size="2">{{ item.quantity }}</a>
+            </div>
+          </td>
+          <td class="cart_total">
+            <p class="cart_total_price">{{ item.product.price }}€</p>
+            <p *ngIf="item.product.promotion" class="cart_total_price" style="color:blue">-{{ item.product.price*item.product.promotion.discount }}€</p>
+
+          </td>
+
+        </tr>
+
+
+        </tbody>
+      </table>
+
+      <div class="row" style="width:80%; margin-left: 10%; margin-right: 10%">
+        <div class="col-sm-6">
+          <div class="total_area">
+            <ul>
+
+              <li>Address <span>{{ scart.key.address }}</span></li>
+              <li>Credits Used <span>{{ scart.key.usedCredits }}</span></li>
+              <li>Total <span>{{ scart.key.total - scart.key.usedCredits }}</span></li>
+            </ul>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+   </section>
+<br>
+

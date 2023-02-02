@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+{% block content %}
+
+    <style>
+        .styled-table {
+            border-collapse: collapse;
+            width:76%;
+            margin-left:12%;
+            margin-right:12%;
+            font-size: 0.9em;
+            font-family: sans-serif;
+            min-width: 400px;
+        }
+        .styled-table thead tr {
+            background-color: #009879;
+            color: #009879;
+            text-align: left;
+        }
+
+            .styled-table th,
+             .styled-table td {
+                padding: 30px 15px;
+                }
+
+
+            .styled-table tbody tr:nth-of-type(even) {
+                background-color: #f3f3f3;
+            }
+
+            .styled-table tbody tr:last-of-type {
+                border-bottom: 2px  #009879;
+            }
+
+            .styled-table tbody tr.active-row {
+                color: #009879;
+            }
+
+    </style>
+    <!--Comments MANAGEMENT-->
+
+            <section ><!--form-->
+                <div class="row">
+                 <div class="col-sm-6 col-sm-offset-3">
+                    <br><br>
+                    <table class="styled-table">
+                    <tr>
+                        <th>Username</th>
+                        <th>UserEmail</th>
+                        <th>Description</th>
+                        <th>Rating</th>
+                        <th>Comment date</th>
+                        <th>Delete Comment</th>
+                    </tr>
+                    {% for comment in comments %}
+                        <tr>
+                            <th>{{ comment.userName }}</th>
+                            <th>{{ comment.userEmail }}</th>
+                            <th>{{ comment.description }}</th>
+                            <th>{{ comment.rating }}<i class="fa fa-star" aria-hidden="true" ></i></th>
+                            <th>{{ comment.commentDate }}</th>
+                            <th><a class="btn btn-sm btn-danger" href="{% url 'deleteComment' comment.id %}">Delete</a></th>
+                        </tr>
+                    {%  endfor %}
+                    </table>
+         </div>
+    </div>
+        </section>
+
+{% endblock %}
+

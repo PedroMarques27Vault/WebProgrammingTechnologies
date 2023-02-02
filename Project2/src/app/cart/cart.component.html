@@ -1,0 +1,127 @@
+
+<style>
+
+</style>
+<section id="cart_items">
+  <div class="container">
+  <br><br>
+    <div class="table-responsive cart_info">
+      <table class="table table-condensed" style="margin: 0 auto;width:80%; margin-left: 10%; margin-right: 10%">
+        <thead>
+
+        <tr class="cart_menu">
+          <td class="image">Item</td>
+          <td class="description">Description</td>
+          <td class="description">Description</td>
+          <td class="quantity">Quantity</td>
+          <td class="price">Price</td>
+
+        </tr>
+        </thead>
+        <tbody>
+
+
+        <tr *ngFor="let item of cart | keyvalue" >
+          <td class="col-sm-3 cart_product">
+            <a href=""><img style="width: 200px" src="{{ item.key.image }}" alt=""></a>
+          </td>
+          <td class="cart_description">
+            <h4><a href="">{{ item.key.name }}</a></h4>
+            <p>Web ID: {{ item.key.id }}</p>
+          </td>
+          <td class="cart_price" style="max-width:300px">
+            <p>{{ item.key.description }}</p>
+          </td>
+          <td class="cart_quantity">
+            <div class="cart_quantity_button">
+              <a class="cart_quantity_input" type="text" name="quantity"  autocomplete="off" size="2">{{ item.value }}</a>
+              <a class="cart_quantity_delete" (click)="addToCart(item.key)" type="submit" ><i class="fa fa-times"></i></a>
+
+            </div>
+          </td>
+          <td class="cart_total">
+            <p class="cart_total_price">{{ item.key.price }}€</p>
+            <p *ngIf="item.key.promotion" class="cart_total_price" style="color:blue">-{{ item.key.price*item.key.promotion.discount }}€</p>
+
+          </td>
+
+        </tr>
+
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <div class="row" style="width:80%; margin-left: 10%; margin-right: 10%">
+    <div class="col-sm-6">
+      <div class="total_area">
+        <ul>
+
+          <li>Cart Sub Total <span>{{ subtotal }}</span></li>
+          <li>Discount <span>{{ discount }}</span></li>
+          <li>Total <span>{{ total }}</span></li>
+        </ul>
+
+
+      </div>
+    </div>
+  </div>
+
+</section>
+
+
+<div *ngIf="checkoutForm && total!=0" style="margin-right: 20%; margin-left: 20%" >
+  <form id="form-box"  [formGroup]="checkoutForm" method="post" (ngSubmit)="checkout()">
+    <div id="form-title">Checkout</div>
+
+    <div class="form-header">Payment Method</div>
+    <div>
+      <p *ngIf="checkoutForm.controls['type'].invalid" style="color:red">Choose a Card Type</p>
+      <select formControlName="type" style="width:30%; margin-right: 10px">
+        <option>
+          Credit Card
+        </option>
+        <option>
+          Debit Card
+        </option>
+      </select>
+      <br>
+      <div class="form-header">Card Number</div>
+      <p *ngIf="checkoutForm.controls['cardno'].invalid" style="color:red">Invalid Card Number, must be 16 digits</p>
+      <input formControlName="cardno" type="text" class="form-input"  [(ngModel)]="cardNo" />
+      <div class="form-header">CVC</div>
+      <p *ngIf="checkoutForm.controls['code'].invalid" style="color:red">Invalid Card Code, must be 3 digits</p>
+      <input type="number" formControlName="code" style="width:20%" class="form-input" />
+      <div class="form-header">Date</div>
+      <p *ngIf="checkoutForm.controls['month'].invalid" style="color:red">Invalid Month, must be MM</p>
+      <p *ngIf="checkoutForm.controls['year'].invalid" style="color:red">Invalid Year, must be YYYY</p>
+      <input type="number" formControlName="month" class="form-input" style="width:20%" placeholder="MM" />
+      <input type="number" formControlName="year" class="form-input" style="width:20%" placeholder="YYYY" />
+    </div>
+
+
+
+
+    <div class="form-header">Credis</div>
+    <p *ngIf="checkoutForm.controls['credits'].invalid" style="color:red">Invalid Credits, must be less than {{credits}} and {{total}}</p>
+    <input formControlName="credits" type="number" class="form-input" />
+
+    <div class="form-header">Address</div>
+    <input formControlName="address" class="form-input" id="region" />
+
+
+    <input [disabled]="checkoutForm.invalid" type="submit"  class="btn btn-default check_out" style="float:right" value="CheckOut">
+  </form>
+
+</div>
+
+
+<br>
+
+
+
+
+
+<router-outlet></router-outlet>

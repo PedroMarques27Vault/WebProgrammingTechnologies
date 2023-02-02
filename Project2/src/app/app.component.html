@@ -1,0 +1,36 @@
+
+<div>
+  <div class="container " >
+    <div class="row">
+      <div class="col-sm-12">
+
+        <div class="navbar">
+          <a routerLink="/home" >Home</a>
+
+          <a routerLink="/shop" >Products</a>
+          <a  routerLink="/cart" >Cart</a>
+
+          <div *ngIf="isUserAdmin()" class="dropdown">
+            <button class="dropbtn" style="color: darkorange">Management
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+              <a routerLink="/products"><i class="fa fa-cog"></i>  Products </a>
+              <a routerLink="/promotions" ><i class="fa fa-cog"></i> Promotions </a>
+              <a routerLink="/users" ><i class="fa fa-cog"></i> Users </a>
+              <a routerLink="/comments" ><i class="fa fa-cog"></i> Comments </a>
+            </div>
+          </div>
+          <a routerLink="/login" (click)="logout()" style="float:right"><i class="icon-signout"></i>Logout </a>
+          <a href="" style="float:right" routerLink="/account">Profile</a>
+
+        </div>
+
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

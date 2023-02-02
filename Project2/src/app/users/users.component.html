@@ -1,0 +1,46 @@
+<div style="  margin:auto;
+          width:90%;
+          padding:10px;">
+
+
+
+  <div class="row "  >
+    <div class="col-sm-12"   >
+      <br>
+
+      <br>
+
+      <p></p>
+      <table class="styled-table" style="margin: 0 auto;width: 1000px; height: 700px;  border: solid black 2px;">
+        <tr style="background-color: darkorange; color:white">
+          <th style="font-size: 18px">Username</th>
+          <th style="font-size: 18px">Email</th>
+          <th style="font-size: 18px">Superuser?</th>
+          <th style="font-size: 18px">Date joined</th>
+
+
+          <th style="font-size: 18px">Remove</th>
+        </tr>
+
+        <tr *ngFor="let user of
+           users">
+          <th >{{ user.username }}</th>
+          <th >{{ user.email }}</th>
+          <th *ngIf="user.is_superuser">TRUE</th>
+          <th *ngIf="!user.is_superuser">FALSE</th>
+          <th >{{ user.date_joined }}</th>
+
+          <th><button type="button" class="btn btn-success" (click)="deleteUser(user.id)">Delete
+          </button></th>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <br>
+
+  </div>
+
+
+
+
+

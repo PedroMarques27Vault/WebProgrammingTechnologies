@@ -1,0 +1,78 @@
+<style>
+
+
+</style>
+
+
+<div style="  margin:auto;
+          width:90%;
+          padding:10px;">
+
+
+
+  <div class="row "  >
+    <div class="col-sm-12"   >
+      <br>
+
+      <br>
+
+      <p></p>
+      <table class="styled-table" style="margin: 0 auto;width: 1000px; height: 200px;  border: solid black 2px;">
+        <tr style="background-color: darkorange; color:white">
+          <th style="font-size: 18px">Name</th>
+          <th style="font-size: 18px">Discount</th>
+          <th style="font-size: 18px">Description</th>
+
+          <th style="font-size: 18px">Update</th>
+          <th style="font-size: 18px">Remove</th>
+        </tr>
+
+        <tr *ngFor="let promotion of
+           promotions">
+          <th >{{ promotion.name }}</th>
+          <th >{{ promotion.discount }}</th>
+          <th >{{ promotion.description }}</th>
+
+          <th><a class="btn btn-sm btn-info" (click)="createUpdateForm(promotion)" >Update</a></th>
+          <th><button type="button" class="btn btn-success" (click)="deleteProduct(promotion.id)">Delete
+          </button></th>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <br>
+  <div>
+    <div style="margin: 0 auto; margin-bottom: 100px;  width:800px;  ">
+
+      <div *ngIf="promotionForm "  >
+        <form id="form-box"  method="post" [formGroup]="promotionForm"  >
+
+
+          <div class="form-header" style=" font-size: 20px">Create Promotion</div>
+          <br>
+          <div>
+            <p *ngIf="promotionForm.controls['name'].invalid" style="color:red; font-size: 18px">Insert a name for the Promotion</p>
+            <input formControlName="name" type="text" *ngIf="currentPromotion" [(ngModel)]="currentPromotion.name" class="form-input"/>
+            <input formControlName="name" type="text" *ngIf="!currentPromotion"  class="form-input"/>
+            <br>
+            <p *ngIf="promotionForm.controls['discount'].invalid" style="color:red; font-size: 18px">Insert a Discount</p>
+            <input formControlName="discount" type="text" *ngIf="currentPromotion" [(ngModel)]="currentPromotion.discount" class="form-input"/>
+            <input formControlName="discount" type="text" *ngIf="!currentPromotion"  class="form-input"/>
+            <p *ngIf="promotionForm.controls['description'].invalid" style="color:red; font-size: 18px">Insert a Description</p>
+            <input formControlName="description" type="text" *ngIf="currentPromotion" [(ngModel)]="currentPromotion.description" class="form-input"/>
+            <input formControlName="description" type="text" *ngIf="!currentPromotion"  class="form-input"/>
+            <p *ngIf="promotionForm.controls['deadline'].invalid" style="color:red; font-size: 18px">Insert a Deadline</p>
+            <input formControlName="description" type="date" *ngIf="currentPromotion" [(ngModel)]="currentPromotion.deadline" class="form-input"/>
+            <input formControlName="description" type="date" *ngIf="!currentPromotion"  class="form-input"/>
+          </div>
+          <input style="font-size: 16px" type="submit" (click)="update()"  class="btn btn-default check_out" value="Save"/>
+          <input style="font-size: 16px"type="submit"  (click)="create()" class="btn btn-default check_out" value="Create New"/>        </form>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+

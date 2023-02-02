@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+{% block content %}
+
+    <script>
+
+    </script>
+    <style>
+        .styled-table {
+            border-collapse: collapse;
+            width:76%;
+            margin-left:12%;
+            margin-right:12%;
+            font-size: 0.9em;
+            font-family: sans-serif;
+            min-width: 400px;
+        }
+        .styled-table thead tr {
+            background-color: #009879;
+            color: #009879;
+            text-align: left;
+        }
+
+            .styled-table th,
+             .styled-table td {
+                padding: 30px 15px;
+                }
+
+
+            .styled-table tbody tr:nth-of-type(even) {
+                background-color: #f3f3f3;
+            }
+
+            .styled-table tbody tr:last-of-type {
+                border-bottom: 2px  #009879;
+            }
+
+            .styled-table tbody tr.active-row {
+                color: #009879;
+            }
+    </style>
+    <!--PRODUCTS MANAGEMENT-->
+	<section ><!--form-->
+        <div class="row">
+				<div class="col-sm-8 col-sm-offset-2" >
+
+                <br><br>
+                <table class="styled-table">
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Delete</th>
+                </tr>
+                {% for user in users %}
+                    <tr>
+                        <th>{{ user.username }}</th>
+                        <th>{{ user.email }}</th>
+                        <th><a class="btn btn-sm btn-danger" href="{% url 'deleteUser' user.id %}">Delete</a></th>
+
+                    </tr>
+                {%  endfor %}
+
+                </table>
+                </div>
+            </div>
+	</section><!--/form-->
+
+{% endblock %}
+

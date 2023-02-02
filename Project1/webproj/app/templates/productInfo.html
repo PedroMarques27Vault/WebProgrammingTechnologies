@@ -1,0 +1,150 @@
+
+    <br>
+    <br>
+    <br>
+    <br>
+<div class="container">
+			<div class="row">
+
+				<div class="col-sm-11 padding-right">
+					<div class="product-details"><!--product-details-->
+						<div class="col-sm-6">
+							<div class="view-product">
+								<img  src="{{ product.image.url }}" alt="" />
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="product-information"><!--/product-information-->
+								<img src="images/product-details/new.jpg" class="newarrival" alt="" />
+								<h2>{{  product.name }}</h2>
+								<p>Web ID: {{  product.id }}</p>
+								<img src="images/product-details/rating.png" alt="" />
+								<span>
+									<span>{{  product.price }}€</span>
+
+									<label>Quantity:</label>
+									<input type="text" value="{{  product.quantity }}" />
+									
+                                    {% if product.quantity != 0 %}
+                                        <a class="btn btn-fefault cart" href="/addToCart/{{ product.id }}" type="submit" ><i class="fa fa-shopping-cart">Add To Cart</i></a>
+                                    {% elif product.quantity == 0 %}
+                                        <a class="btn btn-fefault cart disabled" href="" type="submit" >Not In Stock</a>
+                                    {% endif %}
+                                <p>
+                                    <h3>{{ avg }}<i class="fas fa-star" style="font-family: FontAwesome"></i></h3>
+                                </p>
+								</span>
+
+
+                                {% if product.stock == True %}
+                                    <p><b>Availability:</b> In Stock</p>
+                                {% else %}
+                                    <p><b>Availability:</b> Not In Stock</p>
+                                {% endif %}
+
+								<p><b>Condition:</b> {{  product.condition }}</p>
+								<p><b>Brand:</b> {{  product.brand }}</p>
+								<a href=""><img src="images/product-details/share.png" class="share img-responsive"  alt="" /></a>
+							</div><!--/product-information-->
+						</div>
+					</div>
+                     <div class="tab-pane fade active in" id="reviews" >
+                            <div class="col-sm-12">
+                                <ul><li><a href=""><i class="fa fa-calendar-o"></i>{{  product.date }}</a></li></ul>
+                                <p><b>Description: </b>{{  product.description }}</p>
+
+                            </div>
+                     </div>
+
+                </div>
+                <div class="col-sm-12 padding-right">    <br><br>    <br><br>
+
+                        <div class="features_items" >
+                            <h2 class="title text-center">Reviews</h2>
+                            {%  for comment in comments %}
+                                <div  >
+                                    <div class="product-image-wrapper col-sm-6">
+                                        <div class="single-products">
+                                            <div class="productinfo text-center" style="border: #2a6496; border-style: solid;">
+                                                <h2>{{ comment.userName }} </h2>
+                                                <label>Description</label>
+                                                <p>{{ comment.description }}</p>
+                                                <label>Date</label>
+                                                <p>{{ comment.commentDate }}</p>
+
+
+                                                <h3>
+                                                {% if comment.rating == 0 %}
+                                                    <i class="fas fa-star-o" style="font-family: FontAwesome"></i>
+                                                    <i class="fas fa-star-o" style="font-family: FontAwesome"></i>
+                                                    <i class="fas fa-star-o" style="font-family: FontAwesome"></i>
+                                                    <i class="fas fa-star-o" style="font-family: FontAwesome"></i>
+                                                    <i class="fas fa-star-o" style="font-family: FontAwesome"></i>
+
+                                                {% elif comment.rating == 1 %}
+                                                    <i class="fas fa-star" style="font-family: FontAwesome"></i>
+                                                    <i class="fas fa-star-o" style="font-family: FontAwesome"></i>
+                                                    <i class="fas fa-star-o" style="font-family: FontAwesome"></i>
+                                                    <i class="fas fa-star-o" style="font-family: FontAwesome"></i>
+                                                    <i class="fas fa-star-o" style="font-family: FontAwesome"></i>
+
+                                                {% elif comment.rating == 2 %}
+                                                    <i class="fas fa-star" style="font-family: FontAwesome"></i>
+                                                    <i class="fas fa-star" style="font-family: FontAwesome"></i>
+                                                    <i class="fas fa-star-o" style="font-family: FontAwesome"></i>
+                                                    <i class="fas fa-star-o" style="font-family: FontAwesome"></i>
+                                                    <i class="fas fa-star-o" style="font-family: FontAwesome"></i>
+
+                                                {% elif comment.rating == 3 %}
+                                                    <i class="fas fa-star" style="font-family: FontAwesome"></i>
+                                                    <i class="fas fa-star" style="font-family: FontAwesome"></i>
+                                                    <i class="fas fa-star" style="font-family: FontAwesome"></i>
+                                                    <i class="fas fa-star-o" style="font-family: FontAwesome"></i>
+                                                    <i class="fas fa-star-o" style="font-family: FontAwesome"></i>
+
+                                                {% elif comment.rating == 4 %}
+                                                    <i class="fas fa-star" style="font-family: FontAwesome"></i>
+                                                    <i class="fas fa-star" style="font-family: FontAwesome"></i>
+                                                    <i class="fas fa-star" style="font-family: FontAwesome"></i>
+                                                    <i class="fas fa-star" style="font-family: FontAwesome"></i>
+                                                    <i class="fas fa-star-o" style="font-family: FontAwesome"></i>
+
+                                                {% elif comment.rating == 5 %}
+                                                    <i class="fas fa-star" style="font-family: FontAwesome"></i>
+                                                    <i class="fas fa-star" style="font-family: FontAwesome"></i>
+                                                    <i class="fas fa-star" style="font-family: FontAwesome"></i>
+                                                    <i class="fas fa-star" style="font-family: FontAwesome"></i>
+                                                    <i class="fas fa-star" style="font-family: FontAwesome"></i>
+                                                {% endif %}
+                                                </h3>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        </div>
+                {% if canReview %}
+
+                <div class="col-md-4 col-md-offset-4">
+                            <div class="login-form"><!--login form-->
+                                <h2 class="title text-center">Write Your Review</h2>
+                                 <form  method="POST" action="" >
+						                    {% csrf_token %}
+                                        {{ form }}
+                                <button type="submit" class="btn btn-default pull-right">
+                                    Submit
+                                </button>
+
+                            </form>
+                            </div>
+                        </div>
+                </div>
+		    </div>
+            {% endif %}
+    </div>
+    <p></p>
+    <p></p>
+    <br>
+</div>
+{% endblock %}

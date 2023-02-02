@@ -1,0 +1,79 @@
+{% extends "layout.html" %}
+{% block content %}
+
+    <style>
+        .styled-table {
+            border-collapse: collapse;
+            width:66%;
+            margin-left:17%;
+            margin-right:17%;
+            font-size: 0.9em;
+            font-family: sans-serif;
+            min-width: 400px;
+        }
+        .styled-table thead tr {
+            background-color: #009879;
+            color: #009879;
+            text-align: left;
+        }
+
+            .styled-table th,
+             .styled-table td {
+                padding: 30px 15px;
+                }
+
+
+            .styled-table tbody tr:nth-of-type(even) {
+                background-color: #f3f3f3;
+            }
+
+            .styled-table tbody tr:last-of-type {
+                border-bottom: 2px  #009879;
+            }
+
+            .styled-table tbody tr.active-row {
+                color: #009879;
+            }
+
+
+    </style>
+    <!--PROMOTIONS MANAGEMENT-->
+	<section ><!--form-->
+        <div class="row">
+
+				<div class="col-sm-12"   >
+                <br>
+                <p>
+                    <a class="btn btn-sm btn-success" style="
+                    float:right; margin-right:20%"  href="{% url 'createPromotion' %}" > Create Promotion </a>
+                </p>
+                <br>
+
+                <p></p>
+                <table class="styled-table">
+
+                <tr>
+                    <th>Name</th>
+                    <th>Discount</th>
+                    <th>Description</th>
+                    <th>Deadline</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+                {% for promotion in promotions %}
+                    <tr>
+                        <th>{{ promotion.name }}</th>
+                        <th>{{ promotion.price }}</th>
+                        <th>{{ promotion.description }}</th>
+                        <th>{{ promotion.deadline }}</th>
+                        <th><a class="btn btn-sm btn-info" href="{% url 'updatePromotion' promotion.id %}">Update</a></th>
+                        <th><a class="btn btn-sm btn-danger" href="{% url 'deletePromotion' promotion.id %}">Delete</a></th>
+                    </tr>
+                {%  endfor %}
+                </table>
+                </div>
+                </div>
+	</section><!--/form-->
+
+{% endblock %}
+

@@ -1,0 +1,137 @@
+<style>
+
+
+
+</style>
+
+<div style="  margin:auto;
+          width:90%;
+          padding:10px;">
+
+
+
+    <div class="row "  >
+      <div class="col-sm-12"   >
+
+
+        <p></p>
+        <table class="styled-table" style="margin: 0 auto; width:100%; border: solid black 2px;">
+          <tr style="background-color: darkorange; color:white">
+            <th style="font-size: 18px">Name</th>
+            <th style="font-size: 18px">Price</th>
+            <th style="font-size: 18px" >Description</th>
+            <th style="font-size: 18px">Quantity</th>
+            <th style="font-size: 18px">Condition</th>
+            <th style="font-size: 18px">Seller</th>
+            <th style="font-size: 18px">Brand</th>
+            <th style="font-size: 18px">Category</th>
+            <th style="font-size: 18px">Promotion</th>
+            <th style="font-size: 18px" >Image</th>
+            <th style="font-size: 18px">Update</th>
+            <th style="font-size: 18px"> Remove</th>
+          </tr>
+
+          <tr *ngFor="let product of
+           products">
+            <th >{{ product.name }}</th>
+            <th >{{ product.price }}</th>
+            <th >{{ product.description }}</th>
+            <th>{{ product.quantity }}</th>
+            <th>{{ product.condition }}</th>
+            <th>{{ product.seller }}</th>
+            <th>{{ product.brand }}</th>
+            <th>{{ product.category }}</th>
+            <th *ngIf="product.promotion">{{ product.promotion.name }}</th>
+            <th *ngIf="!product.promotion">-------</th>
+            <th>   <img style="height:100px" src="{{ product.image }}" alt="" /></th>
+            <th><a class="btn btn-sm btn-info" (click)="createUpdateForm(product)" >Update</a></th>
+            <th><button class="btn btn-sm btn-danger" (click)="deleteProduct(product.id)" >Delete</button></th>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+  <br>
+  <div>
+    <div >
+
+      <div *ngIf="productForm " >
+        <form style="magin: 0 auto; width: 800px; " id="form-box"  method="post"  [formGroup]="productForm"  >
+
+
+          <h2 class="form-header" style="font-size: 22px">Create Product</h2>
+          <div>
+            <p *ngIf="productForm.controls['name'].invalid" style="color:red; font-size: 18px">Insert a name for the Product</p>
+            <input formControlName="name" type="text" *ngIf="currentProduct" [(ngModel)]="currentProduct.name" class="form-input"/>
+            <input formControlName="name" type="text" *ngIf="!currentProduct"  class="form-input"/>
+            <br>
+            <p *ngIf="productForm.controls['description'].invalid" style="color:red; font-size: 18px">Insert a Description</p>
+            <input formControlName="description" *ngIf="currentProduct" [(ngModel)]="currentProduct.description"  type="text" class="form-input"/>
+            <input formControlName="description" *ngIf="!currentProduct" type="text" class="form-input"/>
+
+            <p *ngIf="productForm.controls['brand'].invalid" style="color:red; font-size: 18px">Insert a brand for the Product</p>
+            <input formControlName="brand" *ngIf="currentProduct" [(ngModel)]="currentProduct.brand"  type="text" class="form-input"/>
+            <input formControlName="brand" *ngIf="!currentProduct" type="text" class="form-input"/>
+
+            <p *ngIf="productForm.controls['quantity'].invalid" style="color:red; font-size: 18px">Insert a Quantity for the Product</p>
+            <input formControlName="quantity"  *ngIf="currentProduct" [(ngModel)]="currentProduct.quantity" type="number" class="form-input"/>
+            <input formControlName="quantity" *ngIf="!currentProduct" type="number" class="form-input"/>
+            <p *ngIf="productForm.controls['price'].invalid" style="color:red; font-size: 18px">Insert a Price</p>
+            <input formControlName="price" *ngIf="currentProduct" [(ngModel)]="currentProduct.price"  type="number" class="form-input"/>
+            <input formControlName="price" *ngIf="!currentProduct" type="number" class="form-input"/>
+
+
+            <input formControlName="image"  (change)="onFileChanged($event)" type="file" class="form-input"/>
+
+            <p *ngIf="productForm.controls['category'].invalid" style="color:red; font-size: 18px"></p>
+            <br><br>
+            <div class="form-header" style="font-size: 18px">Category</div>
+            <select formControlName="category" style="width:30%; margin-right: 10px">
+              <option *ngFor="let c of CATEGORY">
+                {{c}}
+              </option>
+            </select>
+
+            <div class="form-header" style="font-size: 18px">Promotion</div>
+            <select  formControlName="promotion" style="width:30%; margin-right: 10px">
+
+                <option *ngFor="let c of PROMOTIONS" [ngValue]="c">
+                  {{c.name}}
+                </option>
+
+
+            </select>
+            <div class="form-header" style="font-size: 18px">Condition</div>
+            <select formControlName="condition" style="width:30%; margin-right: 10px">
+              <option value="New">
+                New
+              </option>
+              <option value="Used">
+                Used
+              </option>
+            </select>
+          </div>
+          <input type="submit" *ngIf="currentProduct" (click)="update()"  class="btn btn-default check_out" value="Save"/>
+          <input style="font-size: 18px; float:right" type="submit"  (click)="create()" class="btn btn-default check_out" value="Create New"/>
+          <br><br>
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+<br><br>
+</div>
+
+  <footer id="footer"><!--Footer-->
+
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="row">
+          <p class="pull-left">Copyright © 2021 TechOn . All rights reserved.</p>
+          <p class="pull-right">TPW Project</p>
+        </div>
+      </div>
+    </div>
+
+  </footer>

@@ -1,0 +1,66 @@
+<div style="  margin:auto;
+          width:90%;
+          padding:10px;">
+
+
+
+  <div class="row "  >
+    <div class="col-sm-12"   >
+
+
+      <p></p>
+      <table class="styled-table" style="margin: 0 auto; width:100%; border: solid black 2px;">
+        <tr style="background-color: darkorange; color:white">
+          <th>Image</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Description</th>
+          <th>Quantity</th>
+          <th>Buyer</th>
+          <th>Promotion</th>
+          <th>Total</th>
+
+        </tr>
+
+        <tr *ngFor="let sold of
+           soldItems">
+
+
+          <th>   <img style="height:100px" src="{{ sold.product.image }}" alt="" /></th>
+
+          <th >{{ sold.product.name }}, by {{sold.product.brand}}</th>
+          <th >{{ sold.product.price }}</th>
+          <th >{{ sold.product.description }}<b> {{ sold.product.category }} </b>,Condition {{sold.product.condition}}</th>
+
+          <th >{{ sold.quantity }}</th>
+          <th >{{ sold.buyer}}</th>
+          <th *ngIf="sold.promotion">{{ sold.promotion.name }}</th>
+          <th *ngIf="!sold.promotion">-------</th>
+          <th *ngIf="sold.promotion">{{ sold.product.price*sold.quantity - sold.product.price*sold.quantity*sold.promotion.discount }}</th>
+          <th *ngIf="!sold.promotion">{{ sold.product.price*sold.quantity }}</th>
+
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <br>
+
+<footer id="footer"><!--Footer-->
+
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="row">
+        <p class="pull-left">Copyright © 2021 TechOn . All rights reserved.</p>
+        <p class="pull-right">TPW Project</p>
+      </div>
+    </div>
+  </div>
+
+</footer>
+
+
+
+
+
+

@@ -1,0 +1,140 @@
+{% extends "layout.html" %}
+{% block content %}
+	<header id="header"><!--header-->
+		<div class="header-middle"><!--header-middle-->
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4 clearfix">
+						<div class="logo pull-left">
+							<a href="index.html"><img src="images/home/logo.png" alt="" /></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/header-middle-->
+		<div class="header-bottom"><!--header-bottom-->
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-9">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+						</div>
+                    </div>
+				</div>
+			</div>
+		</div><!--/header-bottom-->
+	</header><!--/header-->
+
+	<section id="cart_items">
+		<div class="container">
+			<div class="breadcrumbs">
+				<ol class="breadcrumb">
+				  <li><a href="#">Home</a></li>
+				  <li class="active">Shopping Cart</li>
+				</ol>
+			</div>
+			<div class="table-responsive cart_info">
+				<table class="table table-condensed">
+					<thead>
+
+						<tr class="cart_menu">
+							<td class="image">Item</td>
+							<td class="description">Description</td>
+							<td class="description">Description</td>
+							<td class="quantity">Quantity</td>
+                            <td class="price">Price</td>
+							<td></td>
+						</tr>
+					</thead>
+					<tbody>
+						{% for product, quantity in cart %}
+
+						<tr>
+                            <td class="col-sm-3 cart_product">
+								<a href=""><img style="width: 200px" src="{{ product.image.url }}" alt=""></a>
+							</td>
+							<td class="cart_description">
+								<h4><a href="">{{ product.name }}</a></h4>
+								<p>Web ID: {{ product.id }}</p>
+							</td>
+							<td class="cart_price" style="max-width:300px">
+								<p>{{ product.description }}</p>
+							</td>
+							<td class="cart_quantity">
+								<div class="cart_quantity_button">
+								    {% if quantity < product.quantity %}
+									<a class="cart_quantity_up" href="/increaseQuantity/{{ product.id }}"> + </a>
+                                    {% endif %}
+									<input class="cart_quantity_input" type="text" name="quantity" value="{{ quantity }}" autocomplete="off" size="2"/>
+                                    {% if quantity > 1 %}
+									<a class="cart_quantity_down" href="/decreaseQuantity/{{ product.id }}"> - </a>
+                                    {% endif %}
+								</div>
+							</td>
+							<td class="cart_total">
+								<p class="cart_total_price">{{ product.price }}€</p>
+							</td>
+							<td class="cart_delete">
+                                <a class="cart_quantity_delete" href="/removeFromCart/{{ product.id }}" type="submit" ><i class="fa fa-times"></i></a>
+							</td>
+						</tr>
+                        {%  endfor %}
+
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section> <!--/#cart_items-->
+
+	<section id="do_action">
+		<div class="container">
+
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="total_area">
+						<ul>
+							<li>Cart Sub Total <span>{{ subtotal }}</span></li>
+							<li>Discount <span>{{ discount }}</span></li>
+							<li>Total <span>{{ total }}</span></li>
+						</ul>
+                        {% if total is not 0 %}
+							<a class="btn btn-default check_out" href="/checkout/" type="submit" >Check Out</a>
+                        {% endif %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</section><!--/#do_action-->
+
+                    <br><br>
+                    <br><br>                    <br><br>
+                    <br><br>
+
+    	<footer id="footer"><!--Footer-->
+
+		<div class="footer-bottom">
+			<div class="container">
+				<div class="row">
+					<p class="pull-left">Copyright © 2021 TechOn . All rights reserved.</p>
+					<p class="pull-right">TPW Project</p>
+				</div>
+			</div>
+		</div>
+
+	</footer>
+
+
+    <script src="js/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.scrollUp.min.js"></script>
+    <script src="js/jquery.prettyPhoto.js"></script>
+    <script src="js/main.js"></script>
+
+{% endblock %}
+

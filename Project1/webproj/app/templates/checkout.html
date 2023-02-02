@@ -1,0 +1,142 @@
+{% extends "layout.html" %}
+{% block content %}
+	<header id="header"><!--header-->
+
+		
+		<div class="header-middle"><!--header-middle-->
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4 clearfix">
+						<div class="logo pull-left">
+							<a href="index.html"><img src="images/home/logo.png" alt="" /></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/header-middle-->
+	
+
+	</header><!--/header-->
+
+	<section id="cart_items">
+		<div class="container">
+			<div class="breadcrumbs">
+				<ol class="breadcrumb">
+				  <li><a href="#">Home</a></li>
+				  <li class="active">Check out</li>
+				</ol>
+			</div><!--/breadcrums-->
+
+			<div class="review-payment">
+				<h2>Review & Payment</h2>
+			</div>
+
+			<div class="table-responsive cart_info">
+				<table class="table table-condensed">
+					<thead>
+
+						<tr class="cart_menu">
+							<td class="image">Item</td>
+							<td class="description">Description</td>
+							<td class="description">Description</td>
+							<td class="quantity">Quantity</td>
+                            <td class="price">Price</td>
+							<td></td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td colspan="4">
+                                 {% for product, quantity in cart %}
+
+                                <tr>
+                                    <td class="col-sm-3 cart_product">
+                                        <a href=""><img style="width: 200px" src="{{ product.image.url }}" alt=""></a>
+                                    </td>
+                                    <td class="cart_description">
+                                        <h4><a href="">{{ product.name }}</a></h4>
+                                        <p>Web ID: {{ product.id }}</p>
+                                    </td>
+                                    <td class="cart_price" style="max-width:300px">
+                                        <p>{{ product.description }}</p>
+                                    </td>
+                                    <td class="cart_quantity">
+                                        <div class="cart_quantity_button">
+                                            <input class="cart_quantity_input" type="text" name="quantity" value="{{ quantity }}" autocomplete="off" size="2"/>
+                                        </div>
+                                    </td>
+                                    <td class="cart_total">
+                                        <p class="cart_total_price">{{ product.price }}€</p>
+                                    </td>
+                                    <td class="cart_delete">
+                                        <a class="cart_quantity_delete" href="/removeFromCart/{{ product.id }}" type="submit" ><i class="fa fa-times"></i></a>
+                                    </td>
+                                </tr>
+                                {%  endfor %}
+                            </td>
+
+							<td colspan="2">
+								<table class="table table-condensed total-result">
+									<tr>
+										<td>Cart Sub Total</td>
+										<td>{{ subtotal }}</td>
+									</tr>
+									<tr>
+										<td>Discount</td>
+										<td>{{ discount }}</td>
+									</tr>
+
+									<tr>
+										<td>Total</td>
+										<td><span>{{ total }}</span></td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+            <div    style="  margin:auto;
+                      width:40%;;
+                     ">
+					<div class="login-form">
+						<h2>Payment</h2>
+                        <hr>
+					    <form method="POST" action="">
+						    {% csrf_token %}
+                            {{ form }}
+                            <input style="float:right; width: 50%" type="submit" class="btn btn-default" type="submit" value="Submit">
+						</form>
+
+					</div>
+				</div>
+
+		</div>
+    <br>
+	</section> <!--/#cart_items-->
+
+	
+
+	<footer id="footer"><!--Footer-->
+
+
+		<div class="footer-bottom">
+			<div class="container">
+				<div class="row">
+					<p class="pull-left">Copyright © 2013 E-SHOPPER Inc. All rights reserved.</p>
+					<p class="pull-right">Designed by <span><a target="_blank" href="http://www.themeum.com">Themeum</a></span></p>
+				</div>
+			</div>
+		</div>
+		
+	</footer><!--/Footer-->
+	
+
+
+    <script src="js/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.scrollUp.min.js"></script>
+    <script src="js/jquery.prettyPhoto.js"></script>
+    <script src="js/main.js"></script>
+{% endblock %}
+

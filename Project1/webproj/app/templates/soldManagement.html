@@ -1,0 +1,101 @@
+{% extends "layout.html" %}
+{% block content %}
+
+    <style>
+        .styled-table {
+            border-collapse: collapse;
+            width:76%;
+            margin-left:12%;
+            margin-right:12%;
+            font-size: 0.9em;
+            font-family: sans-serif;
+            min-width: 400px;
+        }
+        .styled-table thead tr {
+            background-color: #009879;
+            color: #009879;
+            text-align: left;
+        }
+
+            .styled-table th,
+             .styled-table td {
+                padding: 30px 15px;
+                }
+
+
+            .styled-table tbody tr:nth-of-type(even) {
+                background-color: #f3f3f3;
+            }
+
+            .styled-table tbody tr:last-of-type {
+                border-bottom: 2px  #009879;
+            }
+
+            .styled-table tbody tr.active-row {
+                color: #009879;
+            }
+    </style>
+    <!--PRODUCTS MANAGEMENT-->
+        <div style="  margin:auto;
+          width:90%;
+          padding:10px;">
+
+
+
+	<section id="cart_items"><!--form-->
+        <div class="row">
+				<div class="col-sm-12 " >
+
+                <table class="styled-table">
+                <tr>
+                    <th>Name</th>
+                    <th>Brand</th>
+                    <th>Description</th>
+                    <th>Condition</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Promotion</th>
+                    <th>Sold</th>
+                    <th>Image</th>
+                    <th>Buyer</th>
+                    <th>Date</th>
+                    <th>Total</th>
+                </tr>
+                {% for s in sold %}
+                    <tr>
+                        <th>{{ s.product.name }}</th>
+                        <th>{{ s.product.brand }}</th>
+                        <th>{{ s.product.description }}</th>
+                        <th>{{ s.product.condition }}</th>
+                        <th>{{ s.product.category }}</th>
+                        <th>{{ s.product.price }}</th>
+                        <th>{{ s.promotion.name }}</th>
+                        <th>{{ s.quantity }}</th>
+                        <th> <img style="height:100px" src="{{ s.product.image.url }}" alt="" /></th>
+                        <th>{{ s.buyer }}</th>
+                        <th>{{ s.date }}</th>
+                        <th>{{ s.total }}</th>
+
+
+                    </tr>
+                {%  endfor %}
+                </table>
+        </div>
+    </div>
+	</section>
+
+    	<footer id="footer"><!--Footer-->
+
+		<div class="footer-bottom">
+			<div class="container">
+				<div class="row">
+					<p class="pull-left">Copyright © 2021 TechOn . All rights reserved.</p>
+					<p class="pull-right">TPW Project</p>
+				</div>
+			</div>
+		</div>
+
+	</footer>
+
+{% endblock %}
+
